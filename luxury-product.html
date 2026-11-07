@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpliPhi Fashion — Product Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="luxury.css" />
+  </head>
+  <body>
+    <div class="notice-bar">Product detail demo • Mock checkout only • Inventory shown is placeholder data</div>
+
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="luxury-home.html">SIMPLIPHI <span>FASHION</span></a>
+        <nav class="nav-links">
+          <a href="luxury-home.html">Home</a>
+          <a href="luxury-collection.html">Collection</a>
+          <a href="luxury-product.html?product=camisole-stretch">Product Detail</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container section fade-in">
+      <section class="pdp-layout">
+        <aside class="pdp-thumbs" id="pdpThumbs" aria-label="Product image thumbnails"></aside>
+
+        <article class="pdp-main-media">
+          <button class="look-btn" type="button" data-mock="Shop the look is demo-only in this preview.">Shop the Look</button>
+          <img id="pdpMainImage" src="" alt="Product image" />
+          <span class="style-chip">Style: #1805</span>
+        </article>
+
+        <article class="pdp-info">
+          <div class="pdp-head-row">
+            <span class="flag">Demo Product • UI only</span>
+            <div class="icon-actions">
+              <button class="icon-btn" type="button" data-mock="Added to wishlist (demo)" aria-label="Wishlist">♡</button>
+              <button class="icon-btn" type="button" data-mock="Share options are mock in this draft" aria-label="Share">↗</button>
+            </div>
+          </div>
+
+          <h1 id="pdpTitle">Micro Modal Elastane Stretch Camisole</h1>
+          <p class="price-line"><strong id="pdpPrice">₹459.00</strong> <span>(Incl. of all taxes)</span></p>
+          <p class="meta">Fabric: 92% cotton, 8% stretch blend • Fit: Regular active fit</p>
+
+          <section class="pdp-block">
+            <h3>Color: <span id="selectedColorName">White</span></h3>
+            <div class="color-cards" id="colorCards"></div>
+          </section>
+
+          <section class="pdp-block">
+            <div class="size-head">
+              <h3>Size</h3>
+              <button class="mini-btn" type="button" data-mock="Size chart is preview-only for now">Size Chart</button>
+            </div>
+            <div class="size-grid" id="sizeGrid"></div>
+            <p class="meta">Inventory shown: <span id="selectedInventory">M (14), L (11), XL (4)</span> • not connected to live store sync.</p>
+          </section>
+
+          <section class="pdp-block qty-bag-wrap">
+            <div class="qty-picker">
+              <button id="qtyMinus" type="button" aria-label="Decrease quantity">−</button>
+              <input id="qtyInput" type="number" min="1" value="1" aria-label="Quantity" />
+              <button id="qtyPlus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn add-bag-btn" type="button" id="addToBagBtn" data-mock="Added to bag (demo checkout only)">ADD TO BAG</button>
+          </section>
+
+          <p class="non-returnable">This product is non-returnable. <a href="#" data-mock="Policy content will be connected in production.">Know more</a></p>
+
+          <section class="pdp-block">
+            <h3>Delivery Details</h3>
+            <div class="delivery-row">
+              <input id="pincodeInput" type="text" maxlength="6" inputmode="numeric" placeholder="Enter pincode" />
+              <button id="checkPincode" class="mini-btn" type="button">CHECK</button>
+            </div>
+            <p id="deliveryStatus" class="meta"></p>
+          </section>
+
+          <section class="feature-tags">
+            <article>
+              <h4>StayFresh</h4>
+              <p>Anti-microbial properties</p>
+            </article>
+            <article>
+              <h4>Adjustable</h4>
+              <p>Comfortable strap support</p>
+            </article>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Product detail is a static demo layout with mock interactions and placeholder inventory.</p>
+      </div>
+    </footer>
+
+    <script src="luxury.js"></script>
+  </body>
+</html>

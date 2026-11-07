@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpliPhi Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="top-strip">
+        <span>SimpliPhi Fashion • Premium launch preview • Free shipping above ₹799</span>
+        <span class="strip-divider">|</span>
+        <span>Launch benefit window closes in <strong id="launchTimer">--:--:--</strong></span>
+        <span class="strip-divider">|</span>
+        <span class="phi-inline"><span class="phi-mark">Φ</span> Credits Active</span>
+      </div>
+      <div class="nav-wrap container">
+        <a class="logo" href="#">SIMPLIPHI<span>FASHION</span></a>
+        <nav class="main-nav">
+          <a href="#products">Products</a>
+          <a href="#experience">Experience</a>
+          <a href="#customerPanel">Customer</a>
+          <a href="#adminPanel">Admin</a>
+          <a href="https://simpliphi.co.in" target="_blank" rel="noreferrer">Main Website</a>
+        </nav>
+        <div class="actions">
+          <button id="openCustomerLogin" class="btn ghost" aria-label="Customer login">Customer Login</button>
+          <button id="openAdminLogin" class="btn" aria-label="Admin login">Admin Login</button>
+          <div id="headerSession" class="header-session hidden">
+            <span id="headerRole" class="badge success">Signed in</span>
+            <button id="headerSignOut" class="small-btn" type="button">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-slide active" style="--bg:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1800&auto=format&fit=crop');">
+          <div class="hero-content container">
+            <p class="eyebrow">Autumn Collection 2026</p>
+            <h1>Premium essentials, designed for everyday performance.</h1>
+            <p>Refined silhouettes, breathable fabrics and modern comfort in every layer.</p>
+            <a class="btn" href="#products">Shop Collection</a>
+          </div>
+        </div>
+        <div class="hero-slide" style="--bg:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop');">
+          <div class="hero-content container">
+            <p class="eyebrow">Best of Season</p>
+            <h1>Built for movement. Styled for now.</h1>
+            <p>Explore topwear, loungewear and performance essentials with premium finish.</p>
+            <a class="btn" href="#products">Explore Now</a>
+          </div>
+        </div>
+        <div class="hero-controls">
+          <button id="prevSlide" aria-label="Previous slide">‹</button>
+          <button id="nextSlide" aria-label="Next slide">›</button>
+        </div>
+      </section>
+
+      <section id="experience" class="container stats-strip">
+        <article>
+          <strong>Secure Checkout</strong>
+          <span>Encrypted payment processing</span>
+        </article>
+        <article>
+          <strong>Easy Returns</strong>
+          <span>Clear approval workflow</span>
+        </article>
+        <article>
+          <strong>Quality Promise</strong>
+          <span>Fabric and fit details upfront</span>
+        </article>
+        <article>
+          <strong>Fast Support</strong>
+          <span>Priority care from dashboard</span>
+        </article>
+      </section>
+
+      <section class="container section">
+        <div class="section-head">
+          <h2>On-Trend Picks</h2>
+          <a href="#">View all</a>
+        </div>
+        <div class="chips">
+          <button class="chip active">Topwear</button>
+          <button class="chip">Bottomwear</button>
+          <button class="chip">Innerwear</button>
+          <button class="chip">Loungewear</button>
+          <button class="chip">Performance</button>
+        </div>
+      </section>
+
+      <section class="container section offer-band">
+        <article class="offer-card">
+          <p class="eyebrow dark">Launch Offer</p>
+          <h3>Get up to 12% benefit on selected essentials.</h3>
+          <p class="muted">Limited launch window with transparent savings applied at checkout.</p>
+        </article>
+        <article class="offer-card">
+          <p class="eyebrow dark">Smart Checkout Prompt</p>
+          <h3 id="shippingStatus">Add ₹799 to unlock free shipping.</h3>
+          <div class="progress-wrap" aria-label="Free shipping progress">
+            <div id="shippingProgress" class="progress-bar"></div>
+          </div>
+          <p class="muted">Cart subtotal: <strong id="cartSubtotal">₹0</strong></p>
+        </article>
+      </section>
+
+      <section class="container section phi-credit-section">
+        <article class="phi-credit-card">
+          <div class="phi-badge-large">Φ</div>
+          <div>
+            <h3>What are Φ Credits?</h3>
+            <p class="muted">Φ Credits are your SimpliPhi loyalty value. Earn through purchases and referrals, then redeem at checkout.</p>
+            <p><strong>Simple rule:</strong> <span class="phi-inline"><span class="phi-mark">Φ</span>1 Credit</span> = ₹1 redemption value (as per active policy caps).</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="products" class="container section products-grid">
+        <article class="product-card" data-product-id="classic-crew-tee">
+          <img src="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=1000&auto=format&fit=crop" alt="Classic tee" />
+          <h3>Classic Crew Tee</h3>
+          <p>₹899</p>
+          <div class="product-actions">
+            <button class="small-btn add-cart" data-name="Classic Crew Tee" data-price="899">Add to Cart</button>
+            <button class="small-btn add-wishlist" data-name="Classic Crew Tee" data-price="899">Wishlist</button>
+            <button class="small-btn save-later" data-name="Classic Crew Tee" data-price="899">Save for later</button>
+          </div>
+        </article>
+        <article class="product-card" data-product-id="flex-track-pants">
+          <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1000&auto=format&fit=crop" alt="Track pants" />
+          <h3>Flex Track Pants</h3>
+          <p>₹1,299</p>
+          <div class="product-actions">
+            <button class="small-btn add-cart" data-name="Flex Track Pants" data-price="1299">Add to Cart</button>
+            <button class="small-btn add-wishlist" data-name="Flex Track Pants" data-price="1299">Wishlist</button>
+            <button class="small-btn save-later" data-name="Flex Track Pants" data-price="1299">Save for later</button>
+          </div>
+        </article>
+        <article class="product-card" data-product-id="active-support-bra">
+          <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=1000&auto=format&fit=crop" alt="Sports bra" />
+          <h3>Active Support Bra</h3>
+          <p>₹1,099</p>
+          <div class="product-actions">
+            <button class="small-btn add-cart" data-name="Active Support Bra" data-price="1099">Add to Cart</button>
+            <button class="small-btn add-wishlist" data-name="Active Support Bra" data-price="1099">Wishlist</button>
+            <button class="small-btn save-later" data-name="Active Support Bra" data-price="1099">Save for later</button>
+          </div>
+        </article>
+        <article class="product-card" data-product-id="ultrasoft-boxers-pack">
+          <img src="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=1000&auto=format&fit=crop" alt="Boxers" />
+          <h3>UltraSoft Boxers (2-Pack)</h3>
+          <p>₹1,499</p>
+          <div class="product-actions">
+            <button class="small-btn add-cart" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Add to Cart</button>
+            <button class="small-btn add-wishlist" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Wishlist</button>
+            <button class="small-btn save-later" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Save for later</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="container section">
+        <div class="section-head">
+          <h2>Rolling Look Viewer</h2>
+          <a href="#">Swipe / Click to Expand</a>
+        </div>
+        <div class="rolling-viewer" id="rollingViewer">
+          <button class="roll-nav" id="rollPrev" aria-label="Scroll left">‹</button>
+          <div class="roll-track" id="rollTrack">
+            <article class="roll-item" data-image="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=1500&auto=format&fit=crop" data-title="Classic Crew Tee">
+              <img src="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=700&auto=format&fit=crop" alt="Classic Crew Tee" />
+              <p>Classic Crew Tee</p>
+            </article>
+            <article class="roll-item" data-image="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1500&auto=format&fit=crop" data-title="Flex Track Pants">
+              <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=700&auto=format&fit=crop" alt="Flex Track Pants" />
+              <p>Flex Track Pants</p>
+            </article>
+            <article class="roll-item" data-image="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=1500&auto=format&fit=crop" data-title="Active Support Bra">
+              <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=700&auto=format&fit=crop" alt="Active Support Bra" />
+              <p>Active Support Bra</p>
+            </article>
+            <article class="roll-item" data-image="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=1500&auto=format&fit=crop" data-title="UltraSoft Boxers">
+              <img src="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=700&auto=format&fit=crop" alt="UltraSoft Boxers" />
+              <p>UltraSoft Boxers</p>
+            </article>
+            <article class="roll-item" data-image="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1500&auto=format&fit=crop" data-title="Urban Athleisure Set">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop" alt="Urban Athleisure Set" />
+              <p>Urban Athleisure Set</p>
+            </article>
+          </div>
+          <button class="roll-nav" id="rollNext" aria-label="Scroll right">›</button>
+        </div>
+      </section>
+
+      <section id="customerPanel" class="container section panel hidden">
+        <div class="panel-head">
+          <h2>Customer Dashboard</h2>
+          <div class="panel-actions">
+            <span class="badge success" id="customerStatus">Logged in as customer</span>
+            <button id="customerSignOut" class="small-btn" type="button">Sign out</button>
+          </div>
+        </div>
+
+        <div class="account-hero">
+          <div>
+            <p class="eyebrow dark">Member Experience</p>
+            <h3>Your SimpliPhi account</h3>
+            <p id="accountNudge" class="muted">Track rewards, continue checkout faster and discover the next best picks.</p>
+          </div>
+          <div class="account-hero-actions">
+            <a href="#products" class="small-btn">Explore products</a>
+            <a href="#floatingCheckout" class="small-btn">Continue checkout</a>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <article><h4>Cart Value</h4><p id="cartValue">₹0</p></article>
+          <article><h4>Total Φ Credits</h4><p id="creditValue">₹0</p></article>
+          <article><h4>Wishlist Items</h4><p id="wishlistCount">0</p></article>
+          <article><h4>Saved for Later</h4><p id="savedLaterCount">0</p></article>
+        </div>
+
+        <div class="split">
+          <section class="card">
+            <h3>Recommended for You</h3>
+            <p class="muted">Curated suggestions to increase value and unlock benefits faster.</p>
+            <ul id="recommendedItems" class="list"></ul>
+          </section>
+          <section class="card">
+            <h3>Recently Viewed</h3>
+            <p class="muted">Jump back into products you explored.</p>
+            <ul id="recentViewedItems" class="list"></ul>
+          </section>
+        </div>
+
+        <div class="split">
+          <section class="card">
+            <h3>Cart & Products</h3>
+            <ul id="cartItems" class="list"></ul>
+          </section>
+          <section class="card">
+            <h3>Payments Summary</h3>
+            <ul id="paymentItems" class="list"></ul>
+            <div class="checkout-hint">
+              <h4>Next Milestone Benefit</h4>
+              <p id="nextMilestonePayment" class="muted"></p>
+              <p id="nextMilestoneBenefit"></p>
+            </div>
+          </section>
+        </div>
+
+        <div class="split">
+          <section class="card">
+            <h3>Wishlist</h3>
+            <ul id="wishlistItems" class="list"></ul>
+          </section>
+          <section class="card">
+            <h3>Saved for Later</h3>
+            <ul id="savedLaterItems" class="list"></ul>
+          </section>
+        </div>
+
+        <section class="card">
+          <h3>Φ Credits Ledger</h3>
+          <ul id="creditLedger" class="list"></ul>
+        </section>
+
+        <section class="card">
+          <h3>Referral Program</h3>
+          <p class="muted">Φ Credits are added only after referred customer's first successful purchase.</p>
+          <ul id="referralStatus" class="list"></ul>
+        </section>
+      </section>
+
+      <section id="adminPanel" class="container section panel hidden">
+        <div class="panel-head">
+          <h2>Admin Control Panel</h2>
+          <div class="panel-actions">
+            <span class="badge" id="adminStatus">Logged in as admin</span>
+            <button id="adminSignOut" class="small-btn" type="button">Sign out</button>
+          </div>
+        </div>
+
+        <div class="admin-tabs" role="tablist" aria-label="Admin dashboard views">
+          <button class="admin-tab active" data-admin-tab="overview" role="tab">Overview</button>
+          <button class="admin-tab" data-admin-tab="landings" role="tab">Landings</button>
+          <button class="admin-tab" data-admin-tab="geo" role="tab">Geo Map</button>
+          <button class="admin-tab" data-admin-tab="customers" role="tab">Customers</button>
+          <button class="admin-tab" data-admin-tab="catalog" role="tab">Catalog</button>
+          <button class="admin-tab" data-admin-tab="approvals" role="tab">Approvals</button>
+          <button class="admin-tab" data-admin-tab="inventory" role="tab">Inventory Sync</button>
+          <button class="admin-tab" data-admin-tab="campaigns" role="tab">Campaigns</button>
+        </div>
+
+        <section class="admin-view" id="adminViewOverview">
+          <div class="kpi-grid admin-kpi">
+            <article><h4>Total Landings (7D)</h4><p id="kpiLandings">0</p></article>
+            <article><h4>Logged-In Visitors</h4><p id="kpiLoggedIn">0</p></article>
+            <article><h4>Average Basket</h4><p id="kpiAov">₹0</p></article>
+            <article><h4>Pending Approvals</h4><p id="kpiApprovals">0</p></article>
+            <article><h4>Customer Lifetime Billing</h4><p id="kpiLifetimeBilling">₹0</p></article>
+          </div>
+          <div class="card">
+            <h3>Landing Trend</h3>
+            <div id="landingBars" class="bar-chart"></div>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewLandings">
+          <div class="card">
+            <h3>Website Landings by Day</h3>
+            <ul id="landingRows" class="list"></ul>
+          </div>
+          <div class="split">
+            <section class="card">
+              <h3>Location Filter (Demo)</h3>
+              <div class="inline-form">
+                <select id="locationScopeFilter">
+                  <option>All Regions</option>
+                  <option>India</option>
+                  <option>UAE</option>
+                  <option>UK</option>
+                  <option>Singapore</option>
+                </select>
+                <select id="locationGranularityFilter">
+                  <option>City</option>
+                  <option>State</option>
+                  <option>Country</option>
+                </select>
+              </div>
+              <p class="muted">Dummy controls for future live geo-trend filtering.</p>
+            </section>
+            <section class="card">
+              <h3>Location-Wise Share</h3>
+              <ul id="locationShareRows" class="list"></ul>
+            </section>
+          </div>
+          <div class="split">
+            <section class="card">
+              <h3>Top Cities (7D)</h3>
+              <ul id="topCitiesRows" class="list"></ul>
+            </section>
+            <section class="card">
+              <h3>Region Conversion Snapshot</h3>
+              <ul id="regionConversionRows" class="list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewGeo">
+          <div class="card">
+            <h3>Visitor Geography Map</h3>
+            <p class="muted">Shows city-level landing signals. If customer logs in, name is shown.</p>
+            <div class="geo-map" id="geoMap">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="World map" />
+              <div id="geoMapPins" class="geo-pins"></div>
+            </div>
+            <ul id="geoLandingList" class="list"></ul>
+          </div>
+          <div class="split">
+            <section class="card">
+              <h3>Geo Insights (Demo)</h3>
+              <ul id="geoInsightRows" class="list"></ul>
+            </section>
+            <section class="card">
+              <h3>Device Mix by Region</h3>
+              <ul id="regionDeviceMixRows" class="list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewCustomers">
+          <div class="card">
+            <h3>Customer Sessions</h3>
+            <ul id="customerSessions" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewCatalog">
+          <div class="kpi-grid admin-kpi">
+            <article><h4>Products on Site</h4><p id="catalogProductCount">0</p></article>
+            <article><h4>Low Stock SKUs</h4><p id="catalogLowStockCount">0</p></article>
+            <article><h4>Out of Stock SKUs</h4><p id="catalogOutOfStockCount">0</p></article>
+            <article><h4>Estimated Catalog Value</h4><p id="catalogValue">₹0</p></article>
+          </div>
+          <section class="card">
+            <div class="section-head">
+              <h3>All Products Currently Displayed</h3>
+              <span class="muted">Live demo view from storefront cards</span>
+            </div>
+            <div class="table-wrap">
+              <table class="admin-table" aria-label="Displayed products table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Store Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="catalogRows"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewApprovals">
+          <div class="split">
+            <section class="card">
+              <h3>Pending Coupon Redemptions</h3>
+              <ul id="couponQueue" class="list"></ul>
+            </section>
+            <section class="card">
+              <h3>Pending Return Approvals</h3>
+              <ul id="returnQueue" class="list"></ul>
+            </section>
+          </div>
+          <div class="split">
+            <section class="card">
+              <h3>Credit Controls</h3>
+              <p class="muted">Add manual goodwill Φ credits for customer profile.</p>
+              <div class="inline-form">
+                <input id="manualCreditAmount" type="number" min="1" value="150" />
+                <button id="addManualCredit" class="btn">Add Φ Credit</button>
+              </div>
+            </section>
+            <section class="card">
+              <h3>Referral Reward Engine</h3>
+              <p class="muted">Process all eligible first-purchase referrals and add credits.</p>
+              <button id="processReferrals" class="btn">Process Referral Credits</button>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewInventory">
+          <div class="card">
+            <h3>Inventory Sync Control Chart</h3>
+            <ul id="inventorySyncRows" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="admin-view hidden" id="adminViewCampaigns">
+          <div class="card">
+            <h3>Campaign & Conversion Control</h3>
+            <ul id="campaignRows" class="list"></ul>
+          </div>
+        </section>
+      </section>
+
+      <section class="promo">
+        <div class="container promo-inner">
+          <div>
+            <p class="eyebrow">Premium Club</p>
+            <h2>Get curated drops, early access and member-only offers.</h2>
+            <p>Join to track loyalty Φ credits, milestones and checkout benefits from one dashboard.</p>
+          </div>
+          <form class="newsletter">
+            <input type="email" placeholder="Enter your email" aria-label="email" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>About</h4>
+          <a href="#">Brand Story</a>
+          <a href="#">Store Locator</a>
+          <a href="#">Sustainability</a>
+        </div>
+        <div>
+          <h4>Customer Care</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Track Order</a>
+        </div>
+        <div>
+          <h4>Policy</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Responsible Use</a>
+        </div>
+      </div>
+      <p class="copyright">SimpliPhi Fashion • Integrated brand experience for simpliphi.co.in • Demo credentials: admin/admin and customer/customer • Draft mode only (not production authentication)</p>
+    </footer>
+
+    <div id="floatingCheckout" class="floating-checkout hidden" aria-live="polite">
+      <div>
+        <p class="muted">Ready to checkout</p>
+        <strong id="floatingTotal">₹0</strong>
+        <p id="checkoutMilestoneHint" class="muted"></p>
+      </div>
+      <a href="#customerPanel" class="btn">Proceed Securely</a>
+    </div>
+
+    <div id="loginModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <h3 id="loginTitle">Login</h3>
+        <p id="loginHint" class="muted"></p>
+        <input id="loginUser" type="text" placeholder="username" />
+        <input id="loginPass" type="password" placeholder="password" />
+        <div class="social-login">
+          <button id="googleAutoLogin" class="small-btn social google" type="button">Continue with Google</button>
+          <button id="appleAutoLogin" class="small-btn social apple" type="button">Continue with Apple</button>
+          <button id="emailLinkAutoLogin" class="small-btn social" type="button">Continue with Email Link</button>
+          <button id="phoneOtpAutoLogin" class="small-btn social" type="button">Continue with Phone OTP</button>
+        </div>
+        <div class="modal-actions">
+          <button id="loginSubmit" class="btn">Login</button>
+          <button id="loginClose" class="btn ghost">Cancel</button>
+        </div>
+        <p id="loginMessage" class="muted">Social login is demo-mode in this preview.</p>
+      </div>
+    </div>
+
+    <div id="viewerModal" class="modal hidden" aria-hidden="true">
+      <div class="viewer-card">
+        <button id="viewerClose" class="viewer-close" aria-label="Close">×</button>
+        <img id="viewerImage" src="" alt="Expanded product view" />
+        <div class="viewer-caption">
+          <h3 id="viewerTitle"></h3>
+          <div class="viewer-actions">
+            <button id="viewerPrev" class="small-btn" aria-label="Previous image">Previous</button>
+            <button id="viewerNext" class="small-btn" aria-label="Next image">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="productDetailModal" class="modal hidden" aria-hidden="true">
+      <div class="product-modal-card" role="dialog" aria-label="Product details popup">
+        <button id="productModalClose" class="viewer-close" aria-label="Close">×</button>
+        <div class="product-modal-grid">
+          <section>
+            <img id="productMainImage" class="product-main-image" src="" alt="Product image" />
+            <div id="productThumbs" class="product-thumbs"></div>
+          </section>
+          <section>
+            <span id="productThemeTag" class="product-theme-pill">Dynamic product theme</span>
+            <h3 id="productTitle"></h3>
+            <p id="productPrice" class="product-price"></p>
+            <p id="productDescription" class="muted"></p>
+            <ul id="productMeta" class="product-meta"></ul>
+
+            <div class="product-block">
+              <h4>Size Options</h4>
+              <div id="productSizes" class="size-options"></div>
+              <p id="sizeStockLabel" class="muted"></p>
+            </div>
+
+            <div class="product-block qty-block">
+              <h4>Quantity</h4>
+              <div class="qty-row">
+                <button id="qtyMinus" class="small-btn" type="button">−</button>
+                <input id="qtyInput" type="number" min="1" value="1" />
+                <button id="qtyPlus" class="small-btn" type="button">+</button>
+              </div>
+            </div>
+
+            <div class="product-block">
+              <div class="product-modal-actions">
+                <button id="productAddToCart" class="btn" type="button">Add to Cart</button>
+                <button id="productAddWishlist" class="small-btn" type="button">Add to Wishlist</button>
+                <button id="productSaveLater" class="small-btn" type="button">Save for Later</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

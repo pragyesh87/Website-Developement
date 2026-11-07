@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpliPhi Fashion — Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="luxury.css" />
+  </head>
+  <body>
+    <div class="notice-bar">Collection page • Demo filters • Inventory feed is not connected</div>
+
+    <header class="header">
+      <div class="container nav">
+        <a class="brand" href="luxury-home.html">SIMPLIPHI <span>FASHION</span></a>
+        <nav class="nav-links">
+          <a href="luxury-home.html">Home</a>
+          <a href="luxury-collection.html">Collection</a>
+          <a href="luxury-product.html?product=camisole-stretch">Product Detail</a>
+        </nav>
+        <div class="nav-actions"><a href="index.html">Back to Prototype</a></div>
+      </div>
+    </header>
+
+    <main class="container section">
+      <div class="section-head fade-in">
+        <h1>Athleisure Collection</h1>
+        <p>Filter UI is visual only in this phase.</p>
+      </div>
+
+      <section class="collection-layout fade-in">
+        <aside class="filter-panel">
+          <h3>Refine</h3>
+          <p class="card-sub">Category</p>
+          <span class="filter-chip">Topwear</span>
+          <span class="filter-chip">Bottomwear</span>
+          <span class="filter-chip">Innerwear</span>
+          <span class="filter-chip">Loungewear</span>
+
+          <p class="card-sub" style="margin-top: 0.9rem">Color</p>
+          <span class="filter-chip">Ivory</span>
+          <span class="filter-chip">Black</span>
+          <span class="filter-chip">Stone</span>
+          <span class="filter-chip">Navy</span>
+
+          <p class="card-sub" style="margin-top: 0.9rem">Size</p>
+          <span class="filter-chip">S</span>
+          <span class="filter-chip">M</span>
+          <span class="filter-chip">L</span>
+          <span class="filter-chip">XL</span>
+        </aside>
+
+        <section>
+          <div class="grid">
+            <article class="card">
+              <img src="https://images.pexels.com/photos/5462207/pexels-photo-5462207.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Collection item" />
+              <div class="card-body">
+                <h3 class="card-title">Motion Layer Tee</h3>
+                <p class="card-sub">₹999 • Demo Product</p>
+                <div class="card-actions">
+                  <a class="mini-btn" href="luxury-product.html?product=motion-layer-tee">View</a>
+                  <button class="mini-btn" data-mock="Added to wishlist (demo)">Wishlist</button>
+                  <button class="mini-btn" data-mock="Saved for later (demo)">Save later</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="https://images.pexels.com/photos/6347919/pexels-photo-6347919.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Collection item" />
+              <div class="card-body">
+                <h3 class="card-title">Studio Jogger</h3>
+                <p class="card-sub">₹1,699 • Demo Product</p>
+                <div class="card-actions">
+                  <a class="mini-btn" href="luxury-product.html?product=studio-jogger">View</a>
+                  <button class="mini-btn" data-mock="Added to wishlist (demo)">Wishlist</button>
+                  <button class="mini-btn" data-mock="Saved for later (demo)">Save later</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="https://images.pexels.com/photos/8131585/pexels-photo-8131585.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Collection item" />
+              <div class="card-body">
+                <h3 class="card-title">Everyday Support Bra</h3>
+                <p class="card-sub">₹1,299 • Demo Product</p>
+                <div class="card-actions">
+                  <a class="mini-btn" href="luxury-product.html?product=everyday-support-bra">View</a>
+                  <button class="mini-btn" data-mock="Added to wishlist (demo)">Wishlist</button>
+                  <button class="mini-btn" data-mock="Saved for later (demo)">Save later</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Collection item" />
+              <div class="card-body">
+                <h3 class="card-title">Core Lounge Shorts</h3>
+                <p class="card-sub">₹1,099 • Demo Product</p>
+                <div class="card-actions">
+                  <a class="mini-btn" href="luxury-product.html?product=core-lounge-shorts">View</a>
+                  <button class="mini-btn" data-mock="Added to wishlist (demo)">Wishlist</button>
+                  <button class="mini-btn" data-mock="Saved for later (demo)">Save later</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Collection page is UI-only. Filters are placeholders for backend wiring.</p>
+      </div>
+    </footer>
+
+    <script src="luxury.js"></script>
+  </body>
+</html>

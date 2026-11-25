@@ -6,13 +6,13 @@
     <title>SimpliPhi Fashion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20261125-elegant" />
   </head>
   <body>
     <header class="site-header">
       <div class="top-strip">
-        <span>SimpliPhi Fashion • Premium launch preview • Free shipping above ₹799</span>
+        <span>SimpliPhi Fashion • Store preview • Free shipping above ₹2,499</span>
         <span class="strip-divider">|</span>
         <span>Launch benefit window closes in <strong id="launchTimer">--:--:--</strong></span>
         <span class="strip-divider">|</span>
@@ -40,20 +40,20 @@
 
     <main>
       <section class="hero">
-        <div class="hero-slide active" style="--bg:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1800&auto=format&fit=crop');">
+        <div class="hero-slide active" style="--bg:url('assets/products/2400/charcoal-melange/hd/image-01.jpg');">
           <div class="hero-content container">
-            <p class="eyebrow">Autumn Collection 2026</p>
-            <h1>Premium essentials, designed for everyday performance.</h1>
-            <p>Refined silhouettes, breathable fabrics and modern comfort in every layer.</p>
-            <a class="btn" href="#products">Shop Collection</a>
+            <p class="eyebrow">The everyday edit · 01</p>
+            <h1>Considered comfort, every day.</h1>
+            <p>Thoughtful essentials for the moments that make up your day.</p>
+            <a class="btn" href="#products">Explore the collection <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <div class="hero-slide" style="--bg:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop');">
+        <div class="hero-slide" style="--bg:url('assets/products/2420/charcoal-melange/hd/image-01.jpg');">
           <div class="hero-content container">
-            <p class="eyebrow">Best of Season</p>
-            <h1>Built for movement. Styled for now.</h1>
-            <p>Explore topwear, loungewear and performance essentials with premium finish.</p>
-            <a class="btn" href="#products">Explore Now</a>
+            <p class="eyebrow">The everyday edit · 02</p>
+            <h1>Made for the way you move.</h1>
+            <p>Discover easy layers and everyday pieces chosen for comfort.</p>
+            <a class="btn" href="#products">Discover the edit <span aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="hero-controls">
@@ -64,12 +64,12 @@
 
       <section id="experience" class="container stats-strip">
         <article>
-          <strong>Secure Checkout</strong>
-          <span>Encrypted payment processing</span>
+          <strong>Checkout preview</strong>
+          <span>Payments not connected</span>
         </article>
         <article>
-          <strong>Easy Returns</strong>
-          <span>Clear approval workflow</span>
+          <strong>Returns policy</strong>
+          <span>Eligibility varies by product</span>
         </article>
         <article>
           <strong>Quality Promise</strong>
@@ -79,6 +79,17 @@
           <strong>Fast Support</strong>
           <span>Priority care from dashboard</span>
         </article>
+      </section>
+
+      <section id="products" class="container section product-section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">The collection / 01</p>
+            <h2>Everyday essentials.</h2>
+          </div>
+          <p class="muted">Product preview · Prices and stock not connected</p>
+        </div>
+        <div id="collectedCards" class="products-grid"></div>
       </section>
 
       <section class="container section">
@@ -102,12 +113,12 @@
           <p class="muted">Limited launch window with transparent savings applied at checkout.</p>
         </article>
         <article class="offer-card">
-          <p class="eyebrow dark">Smart Checkout Prompt</p>
-          <h3 id="shippingStatus">Add ₹799 to unlock free shipping.</h3>
+          <p class="eyebrow dark">Shipping preview</p>
+          <h3 id="shippingStatus">Free shipping above ₹2,499; otherwise ₹129 per order.</h3>
           <div class="progress-wrap" aria-label="Free shipping progress">
             <div id="shippingProgress" class="progress-bar"></div>
           </div>
-          <p class="muted">Cart subtotal: <strong id="cartSubtotal">₹0</strong></p>
+          <p class="muted">Demo cart subtotal: <strong id="cartSubtotal">₹0</strong> · Shipping is not added to this preview.</p>
         </article>
       </section>
 
@@ -116,84 +127,23 @@
           <div class="phi-badge-large">Φ</div>
           <div>
             <h3>What are Φ Credits?</h3>
-            <p class="muted">Φ Credits are your SimpliPhi loyalty value. Earn through purchases and referrals, then redeem at checkout.</p>
+            <p class="muted">Φ Credits are your SimpliPhi loyalty value. Credits earned for a purchased product are intended to become available for a later purchase after its return window closes. Rules are still being finalized.</p>
             <p><strong>Simple rule:</strong> <span class="phi-inline"><span class="phi-mark">Φ</span>1 Credit</span> = ₹1 redemption value (as per active policy caps).</p>
           </div>
         </article>
       </section>
 
-      <section id="products" class="container section products-grid">
-        <article class="product-card" data-product-id="classic-crew-tee">
-          <img src="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=1000&auto=format&fit=crop" alt="Classic tee" />
-          <h3>Classic Crew Tee</h3>
-          <p>₹899</p>
-          <div class="product-actions">
-            <button class="small-btn add-cart" data-name="Classic Crew Tee" data-price="899">Add to Cart</button>
-            <button class="small-btn add-wishlist" data-name="Classic Crew Tee" data-price="899">Wishlist</button>
-            <button class="small-btn save-later" data-name="Classic Crew Tee" data-price="899">Save for later</button>
-          </div>
-        </article>
-        <article class="product-card" data-product-id="flex-track-pants">
-          <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1000&auto=format&fit=crop" alt="Track pants" />
-          <h3>Flex Track Pants</h3>
-          <p>₹1,299</p>
-          <div class="product-actions">
-            <button class="small-btn add-cart" data-name="Flex Track Pants" data-price="1299">Add to Cart</button>
-            <button class="small-btn add-wishlist" data-name="Flex Track Pants" data-price="1299">Wishlist</button>
-            <button class="small-btn save-later" data-name="Flex Track Pants" data-price="1299">Save for later</button>
-          </div>
-        </article>
-        <article class="product-card" data-product-id="active-support-bra">
-          <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=1000&auto=format&fit=crop" alt="Sports bra" />
-          <h3>Active Support Bra</h3>
-          <p>₹1,099</p>
-          <div class="product-actions">
-            <button class="small-btn add-cart" data-name="Active Support Bra" data-price="1099">Add to Cart</button>
-            <button class="small-btn add-wishlist" data-name="Active Support Bra" data-price="1099">Wishlist</button>
-            <button class="small-btn save-later" data-name="Active Support Bra" data-price="1099">Save for later</button>
-          </div>
-        </article>
-        <article class="product-card" data-product-id="ultrasoft-boxers-pack">
-          <img src="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=1000&auto=format&fit=crop" alt="Boxers" />
-          <h3>UltraSoft Boxers (2-Pack)</h3>
-          <p>₹1,499</p>
-          <div class="product-actions">
-            <button class="small-btn add-cart" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Add to Cart</button>
-            <button class="small-btn add-wishlist" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Wishlist</button>
-            <button class="small-btn save-later" data-name="UltraSoft Boxers (2-Pack)" data-price="1499">Save for later</button>
-          </div>
-        </article>
-      </section>
-
-      <section class="container section">
+      <section class="container section looks-section">
         <div class="section-head">
-          <h2>Rolling Look Viewer</h2>
-          <a href="#">Swipe / Click to Expand</a>
+          <div>
+            <p class="section-kicker">A closer look / 02</p>
+            <h2>Explore the details.</h2>
+          </div>
+          <p class="muted">Swipe or select a product to explore</p>
         </div>
         <div class="rolling-viewer" id="rollingViewer">
           <button class="roll-nav" id="rollPrev" aria-label="Scroll left">‹</button>
-          <div class="roll-track" id="rollTrack">
-            <article class="roll-item" data-image="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=1500&auto=format&fit=crop" data-title="Classic Crew Tee">
-              <img src="https://images.unsplash.com/photo-1588117260148-b47818741c74?q=80&w=700&auto=format&fit=crop" alt="Classic Crew Tee" />
-              <p>Classic Crew Tee</p>
-            </article>
-            <article class="roll-item" data-image="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1500&auto=format&fit=crop" data-title="Flex Track Pants">
-              <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=700&auto=format&fit=crop" alt="Flex Track Pants" />
-              <p>Flex Track Pants</p>
-            </article>
-            <article class="roll-item" data-image="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=1500&auto=format&fit=crop" data-title="Active Support Bra">
-              <img src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?q=80&w=700&auto=format&fit=crop" alt="Active Support Bra" />
-              <p>Active Support Bra</p>
-            </article>
-            <article class="roll-item" data-image="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=1500&auto=format&fit=crop" data-title="UltraSoft Boxers">
-              <img src="https://images.unsplash.com/photo-1618677366787-9727aacca7ea?q=80&w=700&auto=format&fit=crop" alt="UltraSoft Boxers" />
-              <p>UltraSoft Boxers</p>
-            </article>
-            <article class="roll-item" data-image="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1500&auto=format&fit=crop" data-title="Urban Athleisure Set">
-              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=700&auto=format&fit=crop" alt="Urban Athleisure Set" />
-              <p>Urban Athleisure Set</p>
-            </article>
-          </div>
+          <div class="roll-track" id="rollTrack"></div>
           <button class="roll-nav" id="rollNext" aria-label="Scroll right">›</button>
         </div>
       </section>
@@ -479,14 +429,16 @@
         </div>
         <div>
           <h4>Customer Care</h4>
-          <a href="#">FAQs</a>
-          <a href="#">Shipping & Returns</a>
+          <a href="store-information.html#contact">Contact (draft)</a>
+          <a href="store-information.html#shipping">Shipping & Returns (draft)</a>
           <a href="#">Track Order</a>
         </div>
         <div>
           <h4>Policy</h4>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="store-information.html#privacy">Privacy (draft)</a>
+          <a href="store-information.html#terms">Terms (draft)</a>
+          <a href="store-information.html#returns">Refunds & cancellations (draft)</a>
+          <a href="store-information.html#checkout-preview">Checkout preview</a>
           <a href="#">Responsible Use</a>
         </div>
       </div>
@@ -523,7 +475,7 @@
     </div>
 
     <div id="viewerModal" class="modal hidden" aria-hidden="true">
-      <div class="viewer-card">
+      <div class="viewer-card" role="dialog" aria-modal="true" aria-labelledby="viewerTitle">
         <button id="viewerClose" class="viewer-close" aria-label="Close">×</button>
         <img id="viewerImage" src="" alt="Expanded product view" />
         <div class="viewer-caption">
@@ -531,6 +483,7 @@
           <div class="viewer-actions">
             <button id="viewerPrev" class="small-btn" aria-label="Previous image">Previous</button>
             <button id="viewerNext" class="small-btn" aria-label="Next image">Next</button>
+            <button id="viewerProduct" class="small-btn" type="button">View product</button>
           </div>
         </div>
       </div>
@@ -547,9 +500,16 @@
           <section>
             <span id="productThemeTag" class="product-theme-pill">Dynamic product theme</span>
             <h3 id="productTitle"></h3>
+            <p id="productBrand" class="product-brand" hidden></p>
             <p id="productPrice" class="product-price"></p>
             <p id="productDescription" class="muted"></p>
             <ul id="productMeta" class="product-meta"></ul>
+            <p id="productNote" class="muted" hidden></p>
+
+            <div id="productColorBlock" class="product-block" hidden>
+              <h4>Colour: <span id="productColorName"></span></h4>
+              <div id="productColors" class="product-colors"></div>
+            </div>
 
             <div class="product-block">
               <h4>Size Options</h4>
@@ -572,12 +532,14 @@
                 <button id="productAddWishlist" class="small-btn" type="button">Add to Wishlist</button>
                 <button id="productSaveLater" class="small-btn" type="button">Save for Later</button>
               </div>
+              <p id="productPreviewNotice" class="muted" hidden>Preview only. Ordering and saved lists are not connected for these products.</p>
             </div>
           </section>
         </div>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="collected-products.js?v=20261125-hd"></script>
+    <script src="script.js?v=20261125-shipping"></script>
   </body>
 </html>

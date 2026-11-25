@@ -24,7 +24,7 @@ chips.forEach((chip) => {
 
 const storageKey = 'premium_store_demo_state_v1';
 const launchKey = 'simpliphi_launch_ends_at_v1';
-const freeShippingThreshold = 799;
+const freeShippingThreshold = 2499;
 const milestoneTiers = [
   {
     name: 'Starter Tier',
@@ -213,7 +213,7 @@ function getRecommendedProducts() {
 }
 
 function getDisplayedCatalogProducts() {
-  const cards = [...document.querySelectorAll('.product-card')];
+  const cards = [...document.querySelectorAll('.product-card:not([data-collected-product])')];
   return cards.map((card) => {
     const id = card.getAttribute('data-product-id') || '';
     const title = card.querySelector('h3')?.textContent?.trim() || 'Unnamed product';
@@ -237,8 +237,8 @@ function getNextMilestone(spendValue) {
 
 function updateCommerceNudges() {
   const cartValue = getCartValue();
-  const progress = Math.min(100, (cartValue / freeShippingThreshold) * 100);
-  const remaining = Math.max(0, freeShippingThreshold - cartValue);
+  const qualifiesForFreeShipping = cartValue > freeShippingThreshold;
+  const progress = qualifiesForFreeShipping ? 100 : Math.min(99, (cartValue / freeShippingThreshold) * 100);
   const nextMilestone = getNextMilestone(appState.lifetimeBilling);
 
   const shippingProgress = document.getElementById('shippingProgress');
@@ -250,7 +250,9 @@ function updateCommerceNudges() {
 
   if (shippingProgress) shippingProgress.style.width = `${progress}%`;
   if (shippingStatus) {
-    shippingStatus.textContent = remaining > 0 ? `Add ${formatInr(remaining)} to unlock free shipping.` : 'Free shipping unlocked for this cart.';
+    shippingStatus.textContent = qualifiesForFreeShipping
+      ? 'Demo: this subtotal qualifies for free shipping.'
+      : 'Demo: ₹129 shipping; free on orders above ₹2,499.';
   }
   if (cartSubtotal) cartSubtotal.textContent = formatInr(cartValue);
   if (floatingTotal) floatingTotal.textContent = formatInr(cartValue);
@@ -853,14 +855,13 @@ loginModal.addEventListener('click', (e) => {
 const rollTrack = document.getElementById('rollTrack');
 const rollPrev = document.getElementById('rollPrev');
 const rollNext = document.getElementById('rollNext');
-const rollItems = [...document.querySelectorAll('.roll-item')];
-
 const viewerModal = document.getElementById('viewerModal');
 const viewerImage = document.getElementById('viewerImage');
 const viewerTitle = document.getElementById('viewerTitle');
 const viewerClose = document.getElementById('viewerClose');
 const viewerPrev = document.getElementById('viewerPrev');
 const viewerNext = document.getElementById('viewerNext');
+const viewerProduct = document.getElementById('viewerProduct');
 
 const productCatalog = {
   'classic-crew-tee': {
@@ -979,31 +980,80 @@ const qtyInput = document.getElementById('qtyInput');
 const productAddToCart = document.getElementById('productAddToCart');
 const productAddWishlist = document.getElementById('productAddWishlist');
 const productSaveLater = document.getElementById('productSaveLater');
+const productBrand = document.getElementById('productBrand');
+const productNote = document.getElementById('productNote');
+const productColorBlock = document.getElementById('productColorBlock');
+const productColorName = document.getElementById('productColorName');
+const productColors = document.getElementById('productColors');
+const productPreviewNotice = document.getElementById('productPreviewNotice');
 
 let activeProductId = null;
 let activeSize = null;
 let activeImageIndex = 0;
+let activeColorIndex = 0;
+
+const collectedCards = document.getElementById('collectedCards');
+collectedCards.innerHTML = collectedProductKeys.map((id) => {
+  const product = collectedProducts[id];
+  const price = product.price === 'Price to be confirmed' ? product.price : `${product.price} (indicative)`;
+  return `<article class="product-card" data-product-id="${id}" data-collected-product>
+    <img src="${product.variants[0].preview}" alt="${product.name} in ${product.variants[0].name}" loading="lazy" />
+    <p class="product-card-style">Style #${product.style} · ${product.variants[0].name}</p>
+    <h3>${product.name}</h3>
+    <p class="product-card-price">${price}</p>
+    <div class="product-actions"><button class="small-btn view-collected" type="button">View details <span aria-hidden="true">↗</span></button></div>
+  </article>`;
+}).join('');
+
+rollTrack.innerHTML = collectedProductKeys.map((id) => {
+  const product = collectedProducts[id];
+  const variant = product.variants[0];
+  return `<button type="button" class="roll-item" data-product-id="${id}">
+    <img src="${variant.preview}" alt="" loading="lazy" />
+    <span class="roll-item-info">
+      <span class="roll-item-style">Style #${product.style}</span>
+      <span class="roll-item-name">${product.name}</span>
+      <span class="roll-item-color">${variant.name} · View look</span>
+    </span>
+  </button>`;
+}).join('');
+const rollItems = [...rollTrack.querySelectorAll('.roll-item')];
 
 let viewerIndex = 0;
 
 function renderViewer(index) {
   const safeIndex = (index + rollItems.length) % rollItems.length;
   viewerIndex = safeIndex;
-  const item = rollItems[safeIndex];
-  viewerImage.src = item.dataset.image;
-  viewerTitle.textContent = item.dataset.title;
+  const product = collectedProducts[rollItems[safeIndex].dataset.productId];
+  viewerImage.src = product.variants[0].preview;
+  viewerImage.alt = `${product.name} in ${product.variants[0].name}`;
+  viewerTitle.textContent = product.name;
 }
 
 function openViewer(index) {
   renderViewer(index);
   viewerModal.classList.remove('hidden');
+  viewerModal.setAttribute('aria-hidden', 'false');
 }
 
 function closeViewer() {
   viewerModal.classList.add('hidden');
+  viewerModal.setAttribute('aria-hidden', 'true');
 }
 
 function updateQtyControls(maxStock) {
+  if (collectedProducts[activeProductId]) {
+    qtyInput.value = '1';
+    qtyInput.disabled = true;
+    qtyMinus.disabled = true;
+    qtyPlus.disabled = true;
+    productAddToCart.disabled = true;
+    sizeStockLabel.textContent = 'Sizes shown for preview only; stock is not connected.';
+    return;
+  }
+  qtyInput.disabled = false;
+  qtyMinus.disabled = false;
+  qtyPlus.disabled = false;
   const safeStock = Math.max(0, maxStock || 0);
   const current = Number(qtyInput.value) || 1;
   const nextValue = Math.min(Math.max(current, 1), Math.max(1, safeStock || 1));
@@ -1021,11 +1071,14 @@ function updateQtyControls(maxStock) {
 }
 
 function renderProductImages(product) {
-  productMainImage.src = product.images[activeImageIndex];
-  productThumbs.innerHTML = product.images
+  const variant = product.variants?.[activeColorIndex];
+  const images = variant ? variant.images : product.images;
+  productMainImage.src = images[activeImageIndex];
+  productMainImage.alt = `${product.name}${variant ? ` - ${variant.name}` : ''}`;
+  productThumbs.innerHTML = (variant?.thumbnails || images)
     .map(
       (img, index) =>
-        `<button type="button" class="${index === activeImageIndex ? 'active' : ''}" data-thumb-index="${index}"><img src="${img}" alt="${product.name} image ${index + 1}" /></button>`,
+        `<button type="button" class="${index === activeImageIndex ? 'active' : ''}" data-thumb-index="${index}" aria-pressed="${index === activeImageIndex}" aria-label="Show product image ${index + 1}"><img src="${img}" alt="" /></button>`,
     )
     .join('');
 
@@ -1037,17 +1090,36 @@ function renderProductImages(product) {
   });
 }
 
+function renderProductColors(product) {
+  productColorBlock.hidden = !product.variants;
+  if (!product.variants) return;
+  productColorName.textContent = product.variants[activeColorIndex].name;
+  productColors.innerHTML = product.variants.map((variant, index) =>
+    `<button type="button" class="product-color ${index === activeColorIndex ? 'active' : ''}" data-color-index="${index}" aria-pressed="${index === activeColorIndex}"><img src="${variant.preview}" alt="" /><span>${variant.name}</span></button>`,
+  ).join('');
+  productColors.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', () => {
+      activeColorIndex = Number(button.getAttribute('data-color-index'));
+      activeImageIndex = 0;
+      renderProductColors(product);
+      renderProductImages(product);
+      renderSizeOptions(product);
+    });
+  });
+}
+
 function renderSizeOptions(product) {
-  const sizeEntries = Object.entries(product.sizes);
-  if (!activeSize || !(activeSize in product.sizes)) {
-    const firstAvailable = sizeEntries.find(([, stock]) => stock > 0)?.[0] ?? sizeEntries[0]?.[0];
+  const sizes = product.variants ? product.variants[activeColorIndex].sizes : product.sizes;
+  const sizeEntries = Object.entries(sizes);
+  if (!activeSize || !(activeSize in sizes) || (sizes[activeSize] !== null && sizes[activeSize] <= 0)) {
+    const firstAvailable = sizeEntries.find(([, stock]) => stock === null || stock > 0)?.[0] ?? sizeEntries[0]?.[0];
     activeSize = firstAvailable;
   }
 
   productSizes.innerHTML = sizeEntries
     .map(([size, stock]) => {
       const isActive = size === activeSize;
-      return `<button type="button" data-size="${size}" ${stock <= 0 ? 'disabled' : ''} class="${isActive ? 'active' : ''}">${size}</button>`;
+      return `<button type="button" data-size="${size}" ${stock !== null && stock <= 0 ? 'disabled' : ''} class="${isActive ? 'active' : ''}" aria-pressed="${isActive}">${size}</button>`;
     })
     .join('');
 
@@ -1055,47 +1127,63 @@ function renderSizeOptions(product) {
     btn.addEventListener('click', () => {
       activeSize = btn.getAttribute('data-size');
       renderSizeOptions(product);
-      updateQtyControls(product.sizes[activeSize]);
+      updateQtyControls(sizes[activeSize]);
     });
   });
 
-  updateQtyControls(product.sizes[activeSize]);
+  updateQtyControls(sizes[activeSize]);
 }
 
 function openProductModal(productId) {
-  const product = productCatalog[productId];
+  const product = collectedProducts[productId] || productCatalog[productId];
   if (!product) return;
 
   activeProductId = productId;
   activeSize = null;
   activeImageIndex = 0;
+  activeColorIndex = 0;
 
-  if (productModalCard && product.theme) {
-    productModalCard.style.setProperty('--product-accent', product.theme.accent);
-    productModalCard.style.setProperty('--product-accent-soft', product.theme.soft);
-    productModalCard.style.setProperty('--product-bg', product.theme.bg);
+  if (productModalCard) {
+    productModalCard.style.setProperty('--product-accent', product.theme?.accent || '#363c32');
+    productModalCard.style.setProperty('--product-accent-soft', product.theme?.soft || '#eeeee8');
+    productModalCard.style.setProperty('--product-bg', product.theme?.bg || '#fbfaf7');
   }
   if (productThemeTag) {
-    productThemeTag.textContent = product.theme?.label || 'Dynamic product theme';
+    productThemeTag.textContent = product.style ? `Style #${product.style}` : product.theme?.label || 'Dynamic product theme';
   }
 
+  const isCollected = Boolean(collectedProducts[productId]);
   productTitle.textContent = product.name;
-  productPrice.textContent = formatInr(product.price);
+  productBrand.hidden = !isCollected;
+  productBrand.textContent = isCollected ? `Brand: ${product.brand}` : '';
+  productPrice.textContent = isCollected
+    ? (product.price === 'Price to be confirmed' ? product.price : `${product.price} (indicative)`)
+    : formatInr(product.price);
   productDescription.textContent = product.description;
-  productMeta.innerHTML = product.meta.map((line) => `<li>${line}</li>`).join('');
+  productMeta.innerHTML = (isCollected ? product.details : product.meta).map((line) => `<li>${line}</li>`).join('');
+  productNote.textContent = product.note || '';
+  productNote.hidden = !product.note;
+  productPreviewNotice.hidden = !isCollected;
+  productAddWishlist.disabled = isCollected;
+  productSaveLater.disabled = isCollected;
   qtyInput.value = '1';
 
-  trackRecentView({ name: product.name, price: product.price });
-  renderCustomerPanel();
+  if (!isCollected) {
+    trackRecentView({ name: product.name, price: product.price });
+    renderCustomerPanel();
+  }
 
+  renderProductColors(product);
   renderProductImages(product);
   renderSizeOptions(product);
 
   productDetailModal.classList.remove('hidden');
+  productDetailModal.setAttribute('aria-hidden', 'false');
 }
 
 function closeProductModal() {
   productDetailModal.classList.add('hidden');
+  productDetailModal.setAttribute('aria-hidden', 'true');
 }
 
 rollPrev?.addEventListener('click', () => {
@@ -1116,11 +1204,17 @@ rollItems.forEach((item, index) => {
   const title = card.querySelector('h3');
   image?.addEventListener('click', () => openProductModal(id));
   title?.addEventListener('click', () => openProductModal(id));
+  card.querySelector('.view-collected')?.addEventListener('click', () => openProductModal(id));
 });
 
 viewerClose?.addEventListener('click', closeViewer);
 viewerPrev?.addEventListener('click', () => renderViewer(viewerIndex - 1));
 viewerNext?.addEventListener('click', () => renderViewer(viewerIndex + 1));
+viewerProduct?.addEventListener('click', () => {
+  const productId = rollItems[viewerIndex].dataset.productId;
+  closeViewer();
+  openProductModal(productId);
+});
 
 viewerModal?.addEventListener('click', (e) => {
   if (e.target === viewerModal) closeViewer();
